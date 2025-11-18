@@ -79,10 +79,34 @@
 						)
 					</p>
 					<p class="productinfo"><%=product.getProdInfo()%></p>
+					<!--
 					<p class="price">
 						Rs
 						<%=product.getProdPrice()%>
 					</p>
+					-->
+					
+					<!-- Code similar to userHome, inspired by Kevin's code -->
+								<%
+					if (product.getProdDiscount() == 0.0) {
+					%>	
+					<p class="price">Rs
+						<%=product.getProdPrice()%>
+					</p>
+					<%
+					} else {
+					%>
+					<p class="price" style='text-decoration: line-through; color: grey; font-size: 15px;'>Rs
+						<%=product.getProdPrice()%>
+					</p>
+						<p class="price">
+							Rs
+							<%=product.getProdPrice() - (product.getProdPrice() * product.getProdDiscount())%>
+						</p>
+					<%
+					}
+					%>
+					
 					<form method="post">
 						<button type="submit"
 							formaction="./RemoveProductSrv?prodid=<%=product.getProdId()%>"
