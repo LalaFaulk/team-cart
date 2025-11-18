@@ -141,7 +141,7 @@
 				}
 				%>
 				
-			<!-- Cart details based on Kevin's code -->
+			<!-- Cart details based on Kevin's design -->
 				<tr style="background-color: grey; color: white;">
 					<td colspan="6" style="text-align: center-left;">Total Before Discount (in Rupees)</td>
 					<td><%=beforeDiscount%>

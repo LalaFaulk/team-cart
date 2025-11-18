@@ -78,10 +78,26 @@
 					%>
 					<p class="productinfo"><%=description%>..
 					</p>
-					<p class="price">
-						Rs
+					<!-- Display of original and discounted price inspired by Kevin's design -->
+					<%
+					if (product.getProdDiscount() == 0.0) {
+					%>	
+					<p class="price">Rs
 						<%=product.getProdPrice()%>
 					</p>
+					<%
+					} else {
+					%>
+					<p class="price" style='text-decoration: line-through; color: grey; font-size: 15px;'>Rs
+						<%=product.getProdPrice()%>
+					</p>
+						<p class="price">
+							Rs
+							<%=product.getProdPrice() - (product.getProdPrice() * product.getProdDiscount())%>
+						</p>
+					<%
+					}
+					%>
 					<form method="post">
 						<%
 						if (cartQty == 0) {

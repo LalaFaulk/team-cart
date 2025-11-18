@@ -75,7 +75,7 @@
 					String description = product.getProdInfo();
 					description = description.substring(0, Math.min(description.length(), 100));
 					%>
-				<!-- Display of original and discounted price inspired by Kevin's code -->
+				<!-- Display of original and discounted price inspired by Kevin's design -->
 					<p class="productinfo"><%=description%>..
 					</p>
 					<%
