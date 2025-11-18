@@ -65,8 +65,16 @@
 			for (ProductBean product : products) {
 				int cartQty = new CartServiceImpl().getCartItemCount(userName, product.getProdId());
 			%>
-			<div class="col-sm-4" style='height: 360px;'>
+			<div class="col-sm-4" style='height: 350px;'>
 				<div class="thumbnail">
+			<%
+			if (product.getProdDiscount() > 0) {
+			%>
+			<!-- https://www.w3schools.com/howto/howto_css_badge.asp (Based on Kevin's design, not exact design replication) -->
+				<span style='font-weight: bold; color: red;'>HOLIDAY SALE <%=product.getProdDiscount() * 100 %>% OFF!</span>
+			<%
+			}
+			%>
 					<img src="./ShowImage?pid=<%=product.getProdId()%>" alt="Product"
 						style="height: 150px; max-width: 180px">
 					<p class="productname"><%=product.getProdName()%>
@@ -87,6 +95,7 @@
 					<%
 					} else {
 					%>
+					<!-- https://www.w3schools.com/cssref/pr_text_text-decoration.php -->
 					<p class="price" style='text-decoration: line-through; color: grey; font-size: 15px;'>Rs
 						<%=product.getProdPrice()%>
 					</p>
