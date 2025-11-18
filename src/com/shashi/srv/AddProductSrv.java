@@ -44,6 +44,7 @@ public class AddProductSrv extends HttpServlet {
 
 		String status = "Product Registration Failed!";
 		String prodName = request.getParameter("name");
+		double prodDiscount = Double.parseDouble(request.getParameter("discount"));
 		String prodType = request.getParameter("type");
 		String prodInfo = request.getParameter("info");
 		double prodPrice = Double.parseDouble(request.getParameter("price"));
@@ -57,7 +58,7 @@ public class AddProductSrv extends HttpServlet {
 
 		ProductServiceImpl product = new ProductServiceImpl();
 
-		status = product.addProduct(prodName, prodType, prodInfo, prodPrice, prodQuantity, prodImage);
+		status = product.addProduct(prodName, prodDiscount, prodType, prodInfo, prodPrice, prodQuantity, prodImage);
 
 		RequestDispatcher rd = request.getRequestDispatcher("addProduct.jsp?message=" + status);
 		rd.forward(request, response);

@@ -103,7 +103,7 @@
 					double currAmount = product.getProdPrice() * prodQuantity;
 					
 					if (product.getProdType().equals("kitchen")) {
-						currAmount = (product.getProdPrice() - (product.getProdPrice() * 0.20)) * prodQuantity;					
+						currAmount = (product.getProdPrice() - (product.getProdPrice() * product.getProdDiscount())) * prodQuantity;					
 					}
 					
 					totAmount += currAmount;

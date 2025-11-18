@@ -18,12 +18,12 @@ import com.shashi.utility.MailMessage;
 public class ProductServiceImpl implements ProductService {
 
 	@Override
-	public String addProduct(String prodName, String prodType, String prodInfo, double prodPrice, int prodQuantity,
+	public String addProduct(String prodName, double prodDiscount, String prodType, String prodInfo, double prodPrice, int prodQuantity,
 			InputStream prodImage) {
 		String status = null;
 		String prodId = IDUtil.generateId();
 
-		ProductBean product = new ProductBean(prodId, prodName, prodType, prodInfo, prodPrice, prodQuantity, prodImage);
+		ProductBean product = new ProductBean(prodId, prodDiscount, prodName, prodType, prodInfo, prodPrice, prodQuantity, prodImage);
 
 		status = addProduct(product);
 
@@ -42,14 +42,15 @@ public class ProductServiceImpl implements ProductService {
 		PreparedStatement ps = null;
 
 		try {
-			ps = con.prepareStatement("insert into product values(?,?,?,?,?,?,?);");
+			ps = con.prepareStatement("insert into product values(?,?,?,?,?,?,?,?);");
 			ps.setString(1, product.getProdId());
-			ps.setString(2, product.getProdName());
-			ps.setString(3, product.getProdType());
-			ps.setString(4, product.getProdInfo());
-			ps.setDouble(5, product.getProdPrice());
-			ps.setInt(6, product.getProdQuantity());
-			ps.setBlob(7, product.getProdImage());
+			ps.setDouble(2, product.getProdDiscount());
+			ps.setString(3, product.getProdName());
+			ps.setString(4, product.getProdType());
+			ps.setString(5, product.getProdInfo());
+			ps.setDouble(6, product.getProdPrice());
+			ps.setInt(7, product.getProdQuantity());
+			ps.setBlob(8, product.getProdImage());
 
 			int k = ps.executeUpdate();
 
@@ -128,15 +129,16 @@ public class ProductServiceImpl implements ProductService {
 
 		try {
 			ps = con.prepareStatement(
-					"update product set pname=?,ptype=?,pinfo=?,pprice=?,pquantity=?,image=? where pid=?");
+					"update product set pname=?,pdiscount=?,ptype=?,pinfo=?,pprice=?,pquantity=?,image=? where pid=?");
 
 			ps.setString(1, updatedProduct.getProdName());
-			ps.setString(2, updatedProduct.getProdType());
-			ps.setString(3, updatedProduct.getProdInfo());
-			ps.setDouble(4, updatedProduct.getProdPrice());
-			ps.setInt(5, updatedProduct.getProdQuantity());
-			ps.setBlob(6, updatedProduct.getProdImage());
-			ps.setString(7, prevProduct.getProdId());
+			ps.setDouble(2, updatedProduct.getProdDiscount());
+			ps.setString(3, updatedProduct.getProdType());
+			ps.setString(4, updatedProduct.getProdInfo());
+			ps.setDouble(5, updatedProduct.getProdPrice());
+			ps.setInt(6, updatedProduct.getProdQuantity());
+			ps.setBlob(7, updatedProduct.getProdImage());
+			ps.setString(8, prevProduct.getProdId());
 
 			int k = ps.executeUpdate();
 
@@ -188,12 +190,13 @@ public class ProductServiceImpl implements ProductService {
 		List<ProductBean> products = new ArrayList<ProductBean>();
 
 		Connection con = DBUtil.provideConnection();
+		
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
-			ps = con.prepareStatement("select * from product");
+			ps = con.prepareStatement("select * from product;");
 
 			rs = ps.executeQuery();
 
@@ -202,12 +205,13 @@ public class ProductServiceImpl implements ProductService {
 				ProductBean product = new ProductBean();
 
 				product.setProdId(rs.getString(1));
-				product.setProdName(rs.getString(2));
-				product.setProdType(rs.getString(3));
-				product.setProdInfo(rs.getString(4));
-				product.setProdPrice(rs.getDouble(5));
-				product.setProdQuantity(rs.getInt(6));
-				product.setProdImage(rs.getAsciiStream(7));
+				product.setProdDiscount(rs.getDouble(2));
+				product.setProdName(rs.getString(3));
+				product.setProdType(rs.getString(4));
+				product.setProdInfo(rs.getString(5));
+				product.setProdPrice(rs.getDouble(6));
+				product.setProdQuantity(rs.getInt(7));
+				product.setProdImage(rs.getAsciiStream(8));
 
 				products.add(product);
 
@@ -243,13 +247,14 @@ public class ProductServiceImpl implements ProductService {
 				ProductBean product = new ProductBean();
 
 				product.setProdId(rs.getString(1));
-				product.setProdName(rs.getString(2));
-				product.setProdType(rs.getString(3));
-				product.setProdInfo(rs.getString(4));
-				product.setProdPrice(rs.getDouble(5));
-				product.setProdQuantity(rs.getInt(6));
-				product.setProdImage(rs.getAsciiStream(7));
-
+				product.setProdDiscount(rs.getDouble(2));
+				product.setProdName(rs.getString(3));
+				product.setProdType(rs.getString(4));
+				product.setProdInfo(rs.getString(5));
+				product.setProdPrice(rs.getDouble(6));
+				product.setProdQuantity(rs.getInt(7));
+				product.setProdImage(rs.getAsciiStream(8));
+				
 				products.add(product);
 
 			}
@@ -288,12 +293,13 @@ public class ProductServiceImpl implements ProductService {
 				ProductBean product = new ProductBean();
 
 				product.setProdId(rs.getString(1));
-				product.setProdName(rs.getString(2));
-				product.setProdType(rs.getString(3));
-				product.setProdInfo(rs.getString(4));
-				product.setProdPrice(rs.getDouble(5));
-				product.setProdQuantity(rs.getInt(6));
-				product.setProdImage(rs.getAsciiStream(7));
+				product.setProdDiscount(rs.getDouble(2));
+				product.setProdName(rs.getString(3));
+				product.setProdType(rs.getString(4));
+				product.setProdInfo(rs.getString(5));
+				product.setProdPrice(rs.getDouble(6));
+				product.setProdQuantity(rs.getInt(7));
+				product.setProdImage(rs.getAsciiStream(8));
 
 				products.add(product);
 
@@ -359,12 +365,13 @@ public class ProductServiceImpl implements ProductService {
 			if (rs.next()) {
 				product = new ProductBean();
 				product.setProdId(rs.getString(1));
-				product.setProdName(rs.getString(2));
-				product.setProdType(rs.getString(3));
-				product.setProdInfo(rs.getString(4));
-				product.setProdPrice(rs.getDouble(5));
-				product.setProdQuantity(rs.getInt(6));
-				product.setProdImage(rs.getAsciiStream(7));
+				product.setProdDiscount(rs.getDouble(2));
+				product.setProdName(rs.getString(3));
+				product.setProdType(rs.getString(4));
+				product.setProdInfo(rs.getString(5));
+				product.setProdPrice(rs.getDouble(6));
+				product.setProdQuantity(rs.getInt(7));
+				product.setProdImage(rs.getAsciiStream(8));
 			}
 
 		} catch (SQLException e) {
@@ -395,14 +402,15 @@ public class ProductServiceImpl implements ProductService {
 		PreparedStatement ps = null;
 
 		try {
-			ps = con.prepareStatement("update product set pname=?,ptype=?,pinfo=?,pprice=?,pquantity=? where pid=?");
+			ps = con.prepareStatement("update product set pname=?,pdiscount=?,ptype=?,pinfo=?,pprice=?,pquantity=? where pid=?");
 
 			ps.setString(1, updatedProduct.getProdName());
-			ps.setString(2, updatedProduct.getProdType());
-			ps.setString(3, updatedProduct.getProdInfo());
-			ps.setDouble(4, updatedProduct.getProdPrice());
-			ps.setInt(5, updatedProduct.getProdQuantity());
-			ps.setString(6, prevProductId);
+			ps.setDouble(2, updatedProduct.getProdDiscount());
+			ps.setString(3, updatedProduct.getProdType());
+			ps.setString(4, updatedProduct.getProdInfo());
+			ps.setDouble(5, updatedProduct.getProdPrice());
+			ps.setInt(6, updatedProduct.getProdQuantity());
+			ps.setString(7, prevProductId);
 
 			int k = ps.executeUpdate();
 			// System.out.println("prevQuantity: "+prevQuantity);
