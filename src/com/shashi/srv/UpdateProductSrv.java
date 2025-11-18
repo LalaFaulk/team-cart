@@ -47,6 +47,8 @@ public class UpdateProductSrv extends HttpServlet {
 		// Login success
 
 		String prodId = request.getParameter("pid");
+		// Add the discount element to updating the product
+		Double prodDiscount = Double.parseDouble(request.getParameter("discount"));
 		String prodName = request.getParameter("name");
 		String prodType = request.getParameter("type");
 		String prodInfo = request.getParameter("info");
@@ -55,6 +57,7 @@ public class UpdateProductSrv extends HttpServlet {
 
 		ProductBean product = new ProductBean();
 		product.setProdId(prodId);
+		product.setProdDiscount(prodDiscount);
 		product.setProdName(prodName);
 		product.setProdInfo(prodInfo);
 		product.setProdPrice(prodPrice);

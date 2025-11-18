@@ -74,6 +74,12 @@
 							placeholder="Enter Product Name" name="name" class="form-control"
 							value="<%=product.getProdName()%>" id="last_name" required>
 					</div>
+					<!--  Used to insert discounts when added to database -->
+					<div class="col-md-6 form-group">
+						<label for="last_name">Product Discount</label> <input type="number"
+							placeholder="Enter Discount (as a Decimal)" name="discount" class="form-control"
+							size="3" max="1.0" min="0.0" value="<%=product.getProdDiscount()%>" id=last_name required>
+					</div>
 					<div class="col-md-6 form-group">
 						<%
 						String ptype = product.getProdType();
