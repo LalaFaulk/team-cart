@@ -59,13 +59,13 @@
  -->
 	<!-- Start of Product Items List -->
 	<div class="container">
-		<div class="row text-center">
+		<div class="row text-center"> 
 
 			<%
 			for (ProductBean product : products) {
 				int cartQty = new CartServiceImpl().getCartItemCount(userName, product.getProdId());
 			%>
-			<div class="col-sm-4" style='height: 350px;'>
+			<div class="col-sm-4" style='height: 360px;'>here
 				<div class="thumbnail">
 					<img src="./ShowImage?pid=<%=product.getProdId()%>" alt="Product"
 						style="height: 150px; max-width: 180px">
@@ -75,12 +75,28 @@
 					String description = product.getProdInfo();
 					description = description.substring(0, Math.min(description.length(), 100));
 					%>
+				<!-- Display of original and discounted price inspired by Kevin's code -->
 					<p class="productinfo"><%=description%>..
 					</p>
-					<p class="price">
-						Rs
+					<%
+					if (product.getProdDiscount() == 0.0) {
+					%>	
+					<p class="price">Rs
 						<%=product.getProdPrice()%>
 					</p>
+					<%
+					} else {
+					%>
+					<p class="price" style='text-decoration: line-through; color: grey; font-size: 15px;'>Rs
+						<%=product.getProdPrice()%>
+					</p>
+						<p class="price">
+							Rs
+							<%=product.getProdPrice() - (product.getProdPrice() * product.getProdDiscount())%>
+						</p>
+					<%
+					}
+					%>
 					<form method="post">
 						<%
 						if (cartQty == 0) {

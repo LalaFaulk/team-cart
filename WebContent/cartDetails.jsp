@@ -84,12 +84,13 @@
 			<tbody
 				style="background-color: white; font-size: 15px; font-weight: bold;">
 
-			<!-- Method to add discounts, however it only applies one type (percentage) -->
+			<!-- Method to add discounts -->
 
 				<%
 				CartServiceImpl cart = new CartServiceImpl();
 				List<CartBean> cartItems = new ArrayList<CartBean>();
 				cartItems = cart.getAllCartItems(userName);
+				double beforeDiscount = 0;
 				double totAmount = 0;
 				for (CartBean item : cartItems) {
 
@@ -101,13 +102,14 @@
 					
 					
 					double currAmount = product.getProdPrice() * prodQuantity;
+					beforeDiscount += currAmount;
 					
 					if (product.getProdType().equals("kitchen")) {
 						currAmount = (product.getProdPrice() - (product.getProdPrice() * product.getProdDiscount())) * prodQuantity;					
 					}
 					
 					totAmount += currAmount;
-					
+			
 
 
 					if (prodQuantity > 0) {
@@ -138,9 +140,20 @@
 				}
 				}
 				%>
+				
+			<!-- Cart details based on Kevin's code -->
+				<tr style="background-color: grey; color: white;">
+					<td colspan="6" style="text-align: center-left;">Total Before Discount (in Rupees)</td>
+					<td><%=beforeDiscount%>
+				</tr>
+				
+				<tr style="background-color: green; color: white;">
+					<td colspan="6" style="text-align: center-left;">Amount Saved (Thanksgiving Sale)</td>
+					<td>- <%=beforeDiscount - totAmount%>
+				</tr>
 
 				<tr style="background-color: grey; color: white;">
-					<td colspan="6" style="text-align: center;">Total Amount to
+					<td colspan="6" style="text-align: center-left;">Total Amount to
 						Pay (in Rupees)</td>
 					<td><%=totAmount%></td>
 				</tr>

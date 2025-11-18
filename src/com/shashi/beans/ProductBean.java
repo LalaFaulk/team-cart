@@ -17,6 +17,8 @@ public class ProductBean implements Serializable {
 	private double prodPrice;
 	private int prodQuantity;
 	private InputStream prodImage;
+	
+	// Constructor based on or inspired by Kevin's code
 
 	public ProductBean(String prodId, double prodDiscount, String prodName, String prodType, String prodInfo, double prodPrice,
 			int prodQuantity, InputStream prodImage) {
@@ -38,6 +40,8 @@ public class ProductBean implements Serializable {
 	public void setProdId(String prodId) {
 		this.prodId = prodId;
 	}
+	
+	// Getter and Setter methods similar or the same as Kevin's code
 	
 	public double getProdDiscount() {
 		return prodDiscount;
