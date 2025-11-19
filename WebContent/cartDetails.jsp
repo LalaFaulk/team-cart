@@ -133,7 +133,7 @@
 					<td><a
 						href="cartDetails.jsp?add=0&uid=<%=userName%>&pid=<%=product.getProdId()%>&avail=<%=product.getProdQuantity()%>&qty=<%=prodQuantity%>"><i
 							class="fa fa-minus"></i></a></td>
-					<td><%=currAmount%></td>
+					<td><%=Math.round(currAmount*100.0)/100.0%></td>
 				</tr>
 
 				<%
@@ -147,15 +147,20 @@
 					<td><%=beforeDiscount%>
 				</tr>
 				
+			<!-- Sites to help solve the rounding issues
+				https://www.geeksforgeeks.org/java/java-program-to-round-a-number-to-n-decimal-places/
+				https://www.w3schools.com/howto/howto_css_badge.asp
+				https://mkyong.com/java/how-to-round-double-float-value-to-2-decimal-points-in-java/
+			 -->
 				<tr style="background-color: green; color: white;">
 					<td colspan="6" style="text-align: center-left;">Amount Saved (Thanksgiving Sale)</td>
-					<td>- <%=beforeDiscount - totAmount%>
+					<td>- <%=Math.round((beforeDiscount - totAmount)*100.0)/100.0%>
 				</tr>
 
 				<tr style="background-color: grey; color: white;">
 					<td colspan="6" style="text-align: center-left;">Total Amount to
 						Pay (in Rupees)</td>
-					<td><%=totAmount%></td>
+					<td><%=Math.round(totAmount*100.0)/100.0%></td>
 				</tr>
 				<%
 				if (totAmount != 0) {
