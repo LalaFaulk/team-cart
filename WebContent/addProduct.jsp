@@ -66,8 +66,14 @@
 					</div>
 				<!--  Used to insert discounts when added to database -->
 					<div class="col-md-6 form-group">
+					<!-- Formatting the input came from an AI answer based on this query: 
+							https://www.google.com/search?q=html+input+type+decimal&rlz=1C1ONGR_enUS1088US1088&oq=html
+							+input+type+as+de&gs_lcrp=EgZjaHJvbWUqCAgBEAAYFhgeMgYIABBFGDkyCAgBEAAYFhgeMggIAhAAGBYYHjII
+							CAMQABgWGB4yCAgEEAAYFhgeMggIBRAAGBYYHjIICAYQABgWGB4yCAgHEAAYFhgeMggICBAAGBYYHjIICAkQABgWGB
+							7SAQg2MDg3ajBqNKgCALACAQ&sourceid=chrome&ie=UTF-8
+					-->
 						<label for="last_name">Product Discount</label> <input type="number"
-							placeholder="Enter Discount (as a Decimal)" name="discount" class="form-control"
+							placeholder="Enter Discount (as a Decimal)" name="discount" step="0.01" class="form-control"
 							size="3" max="1.0" min="0.0" id=last_name required>
 					</div>
 					
