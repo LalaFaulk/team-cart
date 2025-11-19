@@ -104,7 +104,7 @@
 					double currAmount = product.getProdPrice() * prodQuantity;
 					beforeDiscount += currAmount;
 					
-					if (product.getProdType().equals("kitchen")) {
+					if (product.getProdDiscount() > 0) {
 						currAmount = (product.getProdPrice() - (product.getProdPrice() * product.getProdDiscount())) * prodQuantity;					
 					}
 					

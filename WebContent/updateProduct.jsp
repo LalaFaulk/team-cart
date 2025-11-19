@@ -105,7 +105,7 @@
 							<option value="speaker"
 								<%="speaker".equalsIgnoreCase(ptype) ? "selected" : ""%>>Speaker</option>
 							<option value="kitchen"
-								<%="kitchen".equalsIgnoreCase(ptype) ? "selected" : ""%>>Kitchen Appliances</option>	
+								<%="kitchen".equalsIgnoreCase(ptype) ? "selected" : ""%>>Kitchen Appliance</option>	
 							<option value="other"
 								<%="other".equalsIgnoreCase(ptype) ? "selected" : ""%>>Miscellaneous</option>
 						</select>
