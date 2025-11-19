@@ -106,6 +106,7 @@
 					<p class="price" style='text-decoration: line-through; color: grey; font-size: 13px;'>Rs
 						<%=product.getProdPrice()%>
 					</p>
+					<!-- Note: should fix decimal format -->
 						<p class="price">
 							Rs
 							<%=product.getProdPrice() - (product.getProdPrice() * product.getProdDiscount())%>

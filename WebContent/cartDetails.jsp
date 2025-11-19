@@ -133,7 +133,8 @@
 					<td><a
 						href="cartDetails.jsp?add=0&uid=<%=userName%>&pid=<%=product.getProdId()%>&avail=<%=product.getProdQuantity()%>&qty=<%=prodQuantity%>"><i
 							class="fa fa-minus"></i></a></td>
-					<td><%=Math.round(currAmount*100.0)/100.0%></td>
+					<!-- Note: should fix decimal format -->			
+					<td><%=currAmount%></td>
 				</tr>
 
 				<%
@@ -154,13 +155,15 @@
 			 -->
 				<tr style="background-color: green; color: white;">
 					<td colspan="6" style="text-align: center-left;">Amount Saved (Thanksgiving Sale)</td>
-					<td>- <%=Math.round((beforeDiscount - totAmount)*100.0)/100.0%>
+				<!-- Note: should fix decimal format -->			
+					<td>- <%=(beforeDiscount - totAmount)%>
 				</tr>
 
 				<tr style="background-color: grey; color: white;">
 					<td colspan="6" style="text-align: center-left;">Total Amount to
 						Pay (in Rupees)</td>
-					<td><%=Math.round(totAmount*100.0)/100.0%></td>
+				<!-- Note: should fix decimal format -->			
+					<td><%=totAmount%></td>
 				</tr>
 				<%
 				if (totAmount != 0) {
