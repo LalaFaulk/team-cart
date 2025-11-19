@@ -71,7 +71,13 @@
 			if (product.getProdDiscount() > 0) {
 			%>
 			<!-- https://www.w3schools.com/howto/howto_css_badge.asp (Based on Kevin's design, not exact design replication) -->
-				<span style='font-weight: bold; color: red;'>HOLIDAY SALE <%=product.getProdDiscount() * 100 %>% OFF!</span>
+					<span style='font-weight: bold; color: red;'>THANKSGIVING SALE
+				<!-- https://www.geeksforgeeks.org/java/5-ways-to-convert-double-to-integer-in-java/ (to properly cast double to int) --> 
+					<%
+					double percent = product.getProdDiscount() * 100;
+					int roundedPercent = (int) percent;
+					%>
+					<%=roundedPercent%>% OFF!</span>
 			<%
 			}
 			%>
