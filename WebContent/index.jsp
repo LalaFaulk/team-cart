@@ -97,7 +97,7 @@
 					} else {
 					%>
 					<!-- https://www.w3schools.com/cssref/pr_text_text-decoration.php -->
-					<p class="price" style='text-decoration: line-through; color: grey; font-size: 15px;'>Rs
+					<p class="price" style='text-decoration: line-through; color: grey; font-size: 13px;'>Rs
 						<%=product.getProdPrice()%>
 					</p>
 						<p class="price">
