@@ -84,7 +84,7 @@
 			<tbody
 				style="background-color: white; font-size: 15px; font-weight: bold;">
 
-			<!-- Method to add discounts -->
+			<!-- Method to add discounts, I think at least inspired by Kevin's code -->
 
 				<%
 				CartServiceImpl cart = new CartServiceImpl();
